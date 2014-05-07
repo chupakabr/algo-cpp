@@ -12,18 +12,18 @@ namespace _7bit {
 namespace algorithm {
 namespace sort {
 
-typedef uint32_t sort_result_t;
+    typedef uint32_t sort_result_t;
 
-// Default "whether first is greater than second" comparator
-template<typename T>
-class default_comparator
-{
-public:
-    bool operator()(const T& v1, const T& v2)
+    // Default "whether first is greater than second" comparator
+    template<typename T>
+    class default_comparator
     {
-        return v1 > v2;
-    }
-};
+    public:
+        bool operator()(const T& v1, const T& v2)
+        {
+            return v1 > v2;
+        }
+    };
 
 } // sort
 } // algorithm

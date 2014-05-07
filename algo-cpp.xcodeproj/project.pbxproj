@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C0DC33CAC26F0C4C866F8A7D /* heap_sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = heap_sort.h; sourceTree = "<group>"; };
 		C0DC340AC9377106AA8DCD22 /* insertion_sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = insertion_sort.h; sourceTree = "<group>"; };
 		C0DC35230392CC37AC334779 /* sort_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sort_common.h; sourceTree = "<group>"; };
 		C0DC37D8B3F98F6ACFDDE261 /* bubble_sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bubble_sort.h; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 				C0DC39352E4F565456577363 /* sort.h */,
 				C0DC35230392CC37AC334779 /* sort_common.h */,
 				C0DC340AC9377106AA8DCD22 /* insertion_sort.h */,
+				C0DC33CAC26F0C4C866F8A7D /* heap_sort.h */,
 			);
 			path = sort;
 			sourceTree = "<group>";
