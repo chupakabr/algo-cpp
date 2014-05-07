@@ -10,7 +10,7 @@
 #include <vector>
 #include "sort/bubble_sort.h"
 
-template<class _Collection>
+template<typename _Collection>
 void print_collection(const char * prefix, _Collection& collection)
 {
     std::cout << prefix << "[";
