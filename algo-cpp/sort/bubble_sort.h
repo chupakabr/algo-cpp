@@ -3,53 +3,51 @@
 // Copyright (c) 2014 Valeriy Chevtaev. All rights reserved.
 //
 
-
 #ifndef __bubble_sort_H_
 #define __bubble_sort_H_
 
-#include <iterator>
+#include "sort_common.h"
 
 namespace _7bit {
 namespace algorithm {
 namespace sort {
-
-// Default "whether first if less than second" comparator
-template<typename T>
-class default_comparator
-{
-public:
-    bool operator()(const T& v1, const T& v2)
-    {
-        return v1 < v2;
-    }
-};
 
 // Bubble sort implementation
 // @param begin Collection start
 // @param end Collection end
 // @param cmp Comparison functor
 template<typename _Iterator, typename _Comparator>
-void bubble_sort(_Iterator begin, _Iterator end, _Comparator cmp)
+sort_result_t bubble_sort(_Iterator begin, _Iterator end, _Comparator cmp)
 {
-    if (begin == end) return;
+    if (begin == end) return 0;
 
-    // TODO
+    sort_result_t count = 0;
+    typename std::iterator_traits<_Iterator>::value_type tmp;
     for (_Iterator it = begin; it != end; ++it)
     {
         for (_Iterator it2 = it; it2 != end; ++it2)
         {
+            if (cmp(*it, *it2))
+            {
+                tmp = *it;
+                *it = *it2;
+                *it2 = tmp;
+            }
 
+            ++count;
         }
     }
+
+    return count;
 }
 
 // Bubble sort implementation
 // @param begin Collection start
 // @param end Collection end
 template<typename _Iterator>
-void bubble_sort(_Iterator begin, _Iterator end)
+sort_result_t bubble_sort(_Iterator begin, _Iterator end)
 {
-    bubble_sort(begin, end, default_comparator<typename std::iterator_traits<_Iterator>::value_type>());
+    return bubble_sort(begin, end, default_comparator<typename std::iterator_traits<_Iterator>::value_type>());
 }
 
 } // sort

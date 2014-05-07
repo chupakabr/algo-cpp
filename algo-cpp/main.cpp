@@ -8,10 +8,10 @@
 
 #include <iostream>
 #include <vector>
-#include "sort/bubble_sort.h"
+#include "sort/sort.h"
 
 template<typename _Collection>
-void print_collection(const char * prefix, _Collection& collection)
+void print_collection(const char * prefix, _7bit::algorithm::sort::sort_result_t sort_count, _Collection& collection)
 {
     std::cout << prefix << "[";
     for (auto e : collection)
@@ -23,7 +23,7 @@ void print_collection(const char * prefix, _Collection& collection)
 
 int main(int argc, const char * argv[])
 {
-    std::vector<int> data(10);
+    std::vector<int> data;
     data.push_back(1);
     data.push_back(5);
     data.push_back(3);
@@ -35,9 +35,11 @@ int main(int argc, const char * argv[])
     data.push_back(6);
     data.push_back(9);
 
-    print_collection("Unsorted:\t", data);
-    _7bit::algorithm::sort::bubble_sort(data.begin(), data.end());
-    print_collection("Sorted:  \t", data);
+    _7bit::algorithm::sort::sort_result_t sort_count;
+    print_collection("Unsorted:\t", sort_count, data);
+    sort_count = _7bit::algorithm::sort::bubble_sort(data.begin(), data.end());
+//    sort_count = _7bit::algorithm::sort::insertion_sort(data.begin(), data.end());
+    print_collection("Sorted:  \t", sort_count, data);
 
     return 0;
 }
