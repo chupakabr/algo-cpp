@@ -23,6 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C0DC37D8B3F98F6ACFDDE261 /* bubble_sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bubble_sort.h; sourceTree = "<group>"; };
 		C0DC3AA274FF628D0070741F /* algo-cpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "algo-cpp"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0DC3EF73E552FE76BE3DA17 /* algo_cpp.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = algo_cpp.1; sourceTree = "<group>"; };
 		C0DC3F9423C822613FD579AC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -47,6 +48,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C0DC3473DDDFD284820F4268 /* sort */ = {
+			isa = PBXGroup;
+			children = (
+				C0DC37D8B3F98F6ACFDDE261 /* bubble_sort.h */,
+			);
+			path = sort;
+			sourceTree = "<group>";
+		};
 		C0DC3965CAC34438904D06CD = {
 			isa = PBXGroup;
 			children = (
@@ -60,8 +69,17 @@
 			children = (
 				C0DC3F9423C822613FD579AC /* main.cpp */,
 				C0DC3EF73E552FE76BE3DA17 /* algo_cpp.1 */,
+				C0DC3473DDDFD284820F4268 /* sort */,
+				C0DC3B436C43FB264C63DCE0 /* search */,
 			);
 			path = "algo-cpp";
+			sourceTree = "<group>";
+		};
+		C0DC3B436C43FB264C63DCE0 /* search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
