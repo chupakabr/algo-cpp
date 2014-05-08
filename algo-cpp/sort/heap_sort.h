@@ -12,6 +12,102 @@ namespace _7bit {
 namespace algorithm {
 namespace sort {
 
+    // Implementation of dynamic sized priority queue on heap.
+    // Bad implementation because of vector. TODO Implement using arrays or something else.
+    // TODO Make this data structure safe (index overflow, ...)
+    template<typename _Element, typename _Comparator>
+    class heap_priority_queue
+    {
+    public:
+        heap_priority_queue(_Comparator cmp)
+        : comparator_(cmp)
+        {
+        }
+
+        void queue(_Element element)
+        {
+            array_.push_back(element);
+            bubble_up(array_.size()-1);
+        }
+
+        _Element dequeue_min()
+        {
+            _Element min = array_[0];
+
+            array_[0] = array_[array_.size()-1];
+            array_.pop_back();
+
+            bubble_down(0);
+
+            return min;
+        }
+    private:
+        int parent(int idx)
+        {
+            if (idx <= 0)
+            {
+                return -1;
+            }
+
+            return idx/2;
+        }
+
+        int child(int idx)
+        {
+            int child_idx = idx*2;
+            if (child_idx >= array_.size())
+            {
+                return -1;
+            }
+
+            return child_idx;
+        }
+
+        void swap(int idx1, int idx2)
+        {
+            _Element tmp = array_[idx1];
+            array_[idx1] = array_[idx2];
+            array_[idx2] = tmp;
+        }
+
+        void bubble_up(int idx)
+        {
+            int parent_idx = parent(idx);
+            if (parent_idx >= 0 && comparator_(array_[parent_idx], array_[idx]))
+            {
+                swap(parent_idx, idx);
+                bubble_up(parent_idx);
+            }
+        }
+
+        void bubble_down(int idx)
+        {
+            int child_idx = child(idx);
+            if (child_idx < 0 || child_idx >= array_.size())
+            {
+                return;
+            }
+
+            int min_idx = idx;
+            for (int i = 0; i <= 1; ++i)
+            {
+                if ((child_idx+i) < array_.size() && comparator_(array_[min_idx], array_[child_idx+i]))
+                {
+                    min_idx = child_idx+i;
+                }
+            }
+
+            if (min_idx != idx)
+            {
+                swap(idx, min_idx);
+                bubble_down(min_idx);
+            }
+        }
+
+        std::vector<_Element> array_;
+        _Comparator comparator_;
+    };
+
     /**
      * Insertion sort implementation
      * @param begin Collection start
@@ -23,10 +119,24 @@ namespace sort {
     {
         if (begin == end) return 0;
 
-        // TODO
+        sort_result_t count = 0;
 
+        // Init heap
+        heap_priority_queue< typename std::iterator_traits<_Iterator>::value_type, _Comparator > pqueue(cmp);
+        for (_Iterator it = begin; it != end; ++it)
+        {
+            pqueue.queue(*it);
+            ++count;
+        }
 
-        return 0;
+        // Go through all the elements by dequeuing the minimum on each iteration
+        for (_Iterator it = begin; it != end; ++it)
+        {
+            *it = pqueue.dequeue_min();
+            ++count;
+        }
+
+        return count;
     }
 
     /**
