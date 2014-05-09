@@ -25,7 +25,7 @@ namespace sort {
             array_.push_back(0);
         }
 
-        void queue(_Element element)
+        void enqueue(_Element element)
         {
             array_.push_back(element);
             bubble_up(array_.size()-1);
@@ -126,7 +126,7 @@ namespace sort {
         heap_priority_queue< typename std::iterator_traits<_Iterator>::value_type, _Comparator > pqueue(cmp);
         for (_Iterator it = begin; it != end; ++it)
         {
-            pqueue.queue(*it);
+            pqueue.enqueue(*it);
             ++count;
         }
 
