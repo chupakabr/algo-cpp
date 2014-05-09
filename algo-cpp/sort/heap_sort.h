@@ -12,7 +12,7 @@ namespace _7bit {
 namespace algorithm {
 namespace sort {
 
-    // Implementation of dynamic sized priority queue on heap.
+    // Implementation of dynamic sized priority queue on heap. Zero element is dummy to work with indexes starting from 1.
     // Bad implementation because of vector. TODO Implement using arrays or something else.
     // TODO Make this data structure safe (index overflow, ...)
     template<typename _Element, typename _Comparator>
@@ -22,6 +22,7 @@ namespace sort {
         heap_priority_queue(_Comparator cmp)
         : comparator_(cmp)
         {
+            array_.push_back(0);
         }
 
         void queue(_Element element)
@@ -32,19 +33,19 @@ namespace sort {
 
         _Element dequeue_min()
         {
-            _Element min = array_[0];
+            _Element min = array_[1];
 
-            array_[0] = array_[array_.size()-1];
+            array_[1] = array_[array_.size()-1];
             array_.pop_back();
 
-            bubble_down(0);
+            bubble_down(1);
 
             return min;
         }
     private:
         int parent(int idx)
         {
-            if (idx <= 0)
+            if (idx <= 1)
             {
                 return -1;
             }
@@ -73,7 +74,7 @@ namespace sort {
         void bubble_up(int idx)
         {
             int parent_idx = parent(idx);
-            if (parent_idx >= 0 && comparator_(array_[parent_idx], array_[idx]))
+            if (parent_idx >= 1 && comparator_(array_[parent_idx], array_[idx]))
             {
                 swap(parent_idx, idx);
                 bubble_up(parent_idx);
@@ -83,7 +84,7 @@ namespace sort {
         void bubble_down(int idx)
         {
             int child_idx = child(idx);
-            if (child_idx < 0 || child_idx >= array_.size())
+            if (child_idx < 1 || child_idx >= array_.size())
             {
                 return;
             }
