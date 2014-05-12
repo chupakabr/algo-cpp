@@ -7,6 +7,8 @@
 #define __sort_common_H_
 
 #include <iterator>
+#include <sys/time.h>
+#include <ctime>
 
 namespace _7bit {
 namespace algorithm {
@@ -24,6 +26,19 @@ namespace sort {
             return v1 > v2;
         }
     };
+
+    // Profiling helpers
+    typedef unsigned long timestamp_t;
+    static timestamp_t
+    get_timestamp ()
+    {
+        struct timeval now;
+        gettimeofday (&now, NULL);
+        timestamp_t ret = now.tv_usec;
+        ret /= 1000;
+        ret += (now.tv_sec * 1000);
+        return ret; // millis
+    }
 
 } // sort
 } // algorithm

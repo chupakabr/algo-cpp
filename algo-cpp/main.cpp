@@ -10,8 +10,19 @@
 #include <vector>
 #include "sort/sort.h"
 
+using namespace _7bit::algorithm::sort;
+
+#define RUN_SORT(header_, func_) do { \
+    tmp = data; \
+    timestamp_t t1 = get_timestamp(); \
+    sort_result_t sort_count = func_(tmp.begin(), tmp.end()); \
+    timestamp_t t2 = get_timestamp(); \
+    print_collection(header_, sort_count, tmp); \
+    std::cout << "time: " << (t1-t2) << " ms" << std::endl; \
+} while(0);
+
 template<typename _Collection>
-void print_collection(const char * prefix, _7bit::algorithm::sort::sort_result_t sort_count, _Collection& collection)
+void print_collection(const char * prefix, sort_result_t sort_count, _Collection& collection)
 {
     std::cout << prefix << "\t(" << sort_count << "): [";
     for (auto e : collection)
@@ -38,18 +49,10 @@ int main(int argc, const char * argv[])
     print_collection("Unsorted   \t", 0, data);
 
     // Sort
-    _7bit::algorithm::sort::sort_result_t sort_count;
-    tmp = data;
-    sort_count = _7bit::algorithm::sort::bubble_sort(tmp.begin(), tmp.end());
-    print_collection("Bubble     \t", sort_count, tmp);
-
-    tmp = data;
-    sort_count = _7bit::algorithm::sort::insertion_sort(tmp.begin(), tmp.end());
-    print_collection("Insertion  \t", sort_count, tmp);
-
-    tmp = data;
-    sort_count = _7bit::algorithm::sort::heap_sort(tmp.begin(), tmp.end());
-    print_collection("Heap       \t", sort_count, tmp);
+    RUN_SORT("Bubble     \t", bubble_sort);
+    RUN_SORT("Insertion  \t", insertion_sort);
+    RUN_SORT("Heap       \t", heap_sort);
+    RUN_SORT("Merge      \t", merge_sort);
 
     return 0;
 }
