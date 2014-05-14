@@ -18,7 +18,7 @@ using namespace _7bit::algorithm::sort;
     sort_result_t sort_count = func_(tmp.begin(), tmp.end()); \
     timestamp_t t2 = get_timestamp(); \
     print_collection(header_, sort_count, tmp); \
-    std::cout << "time: " << (t1-t2) << " ms" << std::endl; \
+    std::cout << "time: " << (t2-t1) << " ms" << std::endl; \
 } while(0);
 
 template<typename _Collection>
@@ -53,6 +53,7 @@ int main(int argc, const char * argv[])
     RUN_SORT("Insertion  \t", insertion_sort);
     RUN_SORT("Heap       \t", heap_sort);
     RUN_SORT("Merge      \t", merge_sort);
+    RUN_SORT("Quick      \t", quick_sort);
 
     return 0;
 }

@@ -10,5 +10,6 @@
 #include "insertion_sort.h"
 #include "heap_sort.h"
 #include "merge_sort.h"
+#include "quick_sort.h"
 
 #endif //__sort_H_
